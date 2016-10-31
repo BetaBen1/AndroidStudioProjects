@@ -13,17 +13,10 @@
     tools:context="com.betaben.collegeapp.NavigationDrawerActivity"
     tools:showIn="@layout/app_bar_navigation_drawer">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <RadioButton
-        android:text="RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="28dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_frame" >
+    </FrameLayout>
 
 </RelativeLayout>

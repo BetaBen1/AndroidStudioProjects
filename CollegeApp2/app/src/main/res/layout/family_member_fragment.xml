@@ -4,11 +4,4 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <RadioButton
-        android:text="RadioButton"
-        android:layout_width="263dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton"
-        android:layout_weight="0.74" />
-
 </LinearLayout>
