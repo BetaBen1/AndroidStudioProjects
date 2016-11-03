@@ -13,6 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.BackendlessCallback;
+
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -20,17 +24,27 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+
+        //Backendless Setup
+
+        String appVersion = "v1";
+        Backendless.initApp(this, "636DD6B1-0D5D-24F2-FF8D-5BEEF3B6B300", "FDCD81AE-6E56-2609-FF93-5645D9659800", appVersion);
+
+        BackendlessUser user = new BackendlessUser();
+        user.setEmail("18bhardin@students.madison.k12.in.us");
+        user.setPassword("1922ford");
+
+        /*Backendless.UserService.register( user, new BackendlessCallback<BackendlessUser>()
+        {
+            @Override
+            public void handleResponse(BackendlessUser backendlessUser )
+            {
+                Log.i( "Registration", backendlessUser.getEmail() + " successfully registered" );
+            }
+        } );*/
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +54,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, new OpeningPage());
+        ft.commit();
+
     }
 
 
@@ -60,28 +79,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
         return true;
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
-        Log.e("I", "hope this works.");
 
         int id = item.getItemId();
         Fragment contentFragment = null;
@@ -90,6 +92,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
             contentFragment = new FamilyMemberFragment();
         } else if (id == R.id.profile){
             contentFragment = new ProfileFragment();
+        } else if (id == R.id.opening_page){
+            contentFragment = new OpeningPage();
         }
 
         if (contentFragment != null) {
