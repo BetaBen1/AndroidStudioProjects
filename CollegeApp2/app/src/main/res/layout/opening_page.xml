@@ -4,10 +4,15 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Welcome!"
+        android:text="Welcome! Give our app a rating!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
         android:fontFamily="serif-monospace"
         android:textSize="36sp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar" />
 </LinearLayout>
