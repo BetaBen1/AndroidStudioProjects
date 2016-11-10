@@ -13,7 +13,11 @@ public class Profile {
 
     private String objectId = "";
 
-    public Profile(){}
+    public Profile(String first, String last, String email){
+        this.firstName = first;
+        this.lastName = last;
+        this.email = email;
+    }
 
     public String getFirstName() {
         return firstName;

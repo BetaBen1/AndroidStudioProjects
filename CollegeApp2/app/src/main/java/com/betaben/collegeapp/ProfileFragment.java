@@ -20,13 +20,22 @@ import com.backendless.async.callback.BackendlessCallback;
 public class ProfileFragment extends Fragment {
 
     private Button submit;
+    private Profile profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
-        /*profile = new Profile();
+
+        profile = new Profile("first", "last", "mail");
+
         submit = (Button) getView().findViewById(R.id.submit);
-        submit.setOnClickListener();*/
+        submit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                save();
+            }
+        });
+
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         return rootView;
     }
@@ -34,11 +43,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        /*Backendless.Persistence.save(mProfile, new BackendlessCallback<Profile>() {
+        save();
+    }
+
+    public void save() {
+        Backendless. Persistence.save(profile, new BackendlessCallback<Profile>() {
             @Override
-            public void handleResponse(Profile response) {
-                Log.i("Hello:", "Saved profile to Backendless");
+            public void handleResponse(Profile response){
+                Log.i("Hello: ", "Saved profile to Backendless.");
             }
-        });*/
+        });
     }
 }
